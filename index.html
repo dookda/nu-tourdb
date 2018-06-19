@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<!--
+
+Page    : index / MobApp
+Version : 1.0
+Author  : Colorlib
+URI     : https://colorlib.com
+
+ -->
+
+<head>
+    <title>ฐานข้อมูลทรัพยากรการท่องเที่ยวเชิงสุขภาพ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Mobland - Mobile App Landing Page Template">
+    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
+
+    <!-- Font -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- Owl carousel -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin="" />
+    <!-- datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" />
+    <!-- google icon and font -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:100i,300,400,500">
+    <!-- Main css -->
+    <link href="css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body data-spy="scroll" data-target="#navbar" data-offset="30">
+
+    <!-- Nav Menu -->
+
+    <div class="nav-menu fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-dark navbar-expand-lg">
+                        <a class="navbar-brand" href="index.html">
+                            <!-- <img src="images/logo.png" class="img-fluid" alt="logo"> -->
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#home">ค้นหา
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#research">เกี่ยวกับงานวิจัย</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#features">ฐานข้อมูล</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#me">นักวิจัย</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <header class="bg-gradient" id="home">
+        <div class="container mt-5">
+            <h1>ฐานข้อมูลทรัพยากรการท่องเที่ยวเชิงสุขภาพ</h1>
+            <p id="tagline">ค้นหาข้อมูลทรัพยากรการท่องเที่ยว 5 จังหวัดภาคเหนือตอนล่าง
+                <br/>(ตาก สุโขทัย พิษณุโลก อุตรดิตถ์ และเพชรบูรณ์) </p>
+            <p></p>
+            <div class="row justify-content-md-center">
+                <div class="col-6 col-lg-6">
+                    <input id="firstSearch_box" type="text" class="form-control input-lg" placeholder="ค้นหาข้อมูลทรัพยากรการท่องเที่ยว">
+                </div>
+            </div>
+
+            <p></p>
+            <div class="row justify-content-md-center">
+                <div class="col-6 col-lg-6">
+                    <div class="card-deck" id="searchData">
+                        <div class="card pricing popular">
+                            <div id="tab">
+                                <table id="fistSearch" class="display" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ชื่อสถานที่</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="img-holder mt-3">
+            <!-- <img src="images/DSC_0445.jpg" alt="phone" class="img-fluid"> -->
+        </div>
+    </header>
+
+    <div class="section light-bg" id="firstSearchMap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-lg-12">
+                    <h4>ผลการค้นหา</h4>
+                    <div class="card-deck">
+                        <div class="card pricing popular">
+                            <div id="fmap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // end .section -->
+
+    <div class="section" id="research">
+        <div class="container">
+            <h4>เกี่ยวกับงานวิจัย</h4>
+            <div class="row">
+                <div class="col-md-8 d-flex align-items-center">
+
+                    <ul class="list-unstyled ui-steps">
+                        <li class="media">
+                            <div class="circle-icon mr-4">1</div>
+                            <div class="media-body">
+                                <h5>เกี่ยวกับงานวิจัย</h5>
+                                <p>
+                                    <span id="kanit14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque
+                                        pretium obcaecati vel exercitationem Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </span>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="media my-4">
+                            <div class="circle-icon mr-4">2</div>
+                            <div class="media-body">
+                                <h5>เกี่ยวกับงานวิจัย</h5>
+                                <p>
+                                    <span id="kanit14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque
+                                        pretium obcaecati vel exercitationem Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </span>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="circle-icon mr-4">3</div>
+                            <div class="media-body">
+                                <h5>เกี่ยวกับงานวิจัย</h5>
+                                <p>
+                                    <span id="kanit14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque
+                                        pretium obcaecati vel exercitationem Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="container text-center">
+                        <img src="images/studyarea.png" alt="client logos" class="img-fluid">
+                        <!-- <img src="images/Seal_st.png" alt="client logos" class="img-fluid">
+                        <img src="images/Seal_pl.png" alt="client logos" class="img-fluid">
+                        <img src="images/Seal_ud.png" alt="client logos" class="img-fluid">
+                        <img src="images/Seal_pb.png" alt="client logos" class="img-fluid"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section light-bg" id="features">
+        <div class="container">
+            <h4>สืบค้นฐานข้อมูลทรัพยากรการท่องเที่ยว
+                <span class="text-primary">เชิงสุขภาพ</span>
+            </h4>
+            <div class="row">
+                <div class="col-12 col-lg-9">
+                    <div class="card-deck">
+                        <div class="card pricing popular">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="card-deck">
+                        <div class="card pricing popular">
+                            <div id="legend">
+                                <h4>คำอธิบาย
+                                    <span class="text-primary">สัญลักษณ์</span>
+                                </h4>
+                                <div class="grid-container">
+                                    <div>
+                                        <img src='http://www.map.nu.ac.th/marker/marker2/aed-2.png'>
+                                    </div>
+                                    <div>
+                                        <span id="kanit13">ทรัพยากรการท่องเที่ยวเชิงการแพทย์ (A)</span>
+                                    </div>
+                                </div>
+
+                                <div class="grid-container">
+                                    <div>
+                                        <img src='http://www.map.nu.ac.th/marker/flowers_1.png'>
+                                    </div>
+                                    <div>
+                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพทางธรรมชาติ (B1)</span>
+                                    </div>
+                                </div>
+
+                                <div class="grid-container">
+                                    <div>
+                                        <img src='http://www.map.nu.ac.th/marker/villa.png'>
+                                    </div>
+                                    <div>
+                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพสมัยใหม่ที่มนุษย์สร้างขึ้น ประเภทสถานที่หรือธุรกิจ (B2-1)</span>
+                                    </div>
+                                </div>
+
+                                <div class="grid-container">
+                                    <div>
+                                        <img src='http://www.map.nu.ac.th/marker/festival.png'>
+                                    </div>
+                                    <div>
+                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพสมัยใหม่ที่มนุษย์สร้างขึ้น ประเภทกิจกรรม (B2-2)</span>
+                                    </div>
+                                </div>
+                                <div class="grid-container">
+                                    <div>
+                                        <img src='http://www.map.nu.ac.th/marker/bouddha.png'>
+                                    </div>
+                                    <div>
+                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพทางวัฒนธรรมและภูมิปัญญา (C)</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="grid-container">
+                                    <div>
+                                        <img src='http://www.map.nu.ac.th/marker/award.png'>
+                                    </div>
+                                    <div>
+                                        <span class="text-legend">อื่นๆ </span>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <div class="card-deck">
+                        <div class="card pricing popular">
+                            <div id="tab">
+                                <input type="text" class="form-control" placeholder="ค้นหาข้อมูลทรัพยากรการท่องเที่ยว" id="myInput">
+                                <!-- <table id="table" class="display" cellspacing="0" width="100%"> -->
+                                <table id="table" class="display" cellspacing="0" width="100%">
+                                    <p></p>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>ลำดับ</th>
+                                            <th>ชื่อสถานที่</th>
+                                            <th>ประเภททรัพยากร</th>
+                                            <th>ระดับศักยภาพ</th>
+                                            <th>จังหวัด</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // end .section -->
+
+    <div class="section" id="me">
+        <div class="container">
+            <h4>เกี่ยวกับ
+                <span class="text-primary">นักวิจัย</span>
+            </h4>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="testimonials owl-carousel">
+                        <div class="testimonials-single">
+                            <img src="images/client.png" alt="client" class="client-img">
+                            <span id="kanit14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque
+                                pretium obcaecati vel exercitationem Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </span>
+                        </div>
+                        <!-- <div class="testimonials-single">
+                            <img src="images/client.png" alt="client" class="client-img">
+                            <blockquote class="blockquote">Uniquely streamline highly efficient scenarios and 24/7 initiatives. Conveniently embrace multifunctional
+                                ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital
+                                via user-centric partnerships.</span>
+                        </div>
+                        <div class="testimonials-single">
+                            <img src="images/client.png" alt="client" class="client-img">
+                            <span id="kanit14">Uniquely streamline highly efficient scenarios and 24/7 initiatives. Conveniently embrace multifunctional
+                                ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital
+                                via user-centric partnerships.</span>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h4>ที่อยู่</h4>
+                    <span id="kanit13">มหาวิทยาลัยนเรศวร 99 หมู่ 9 ตำบลท่าโพธิ์ อำเภอเมืองพิษณุโลก จังหวัดพิษณุโลก รหัสไปรษณีย์ 65000</span>
+                    <div id="mapContact"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // end .section -->
+    <footer class="my-5 text-center">
+        <!-- Copyright removal is not prohibited! -->
+        <p class="mb-2">
+            <small>COPYRIGHT © 2018. ALL RIGHTS RESERVED</small>
+        </p>
+
+        <!-- <small>
+            <a href="#" class="m-2">PRESS</a>
+            <a href="#" class="m-2">TERMS</a>
+            <a href="#" class="m-2">PRIVACY</a>
+        </small> -->
+    </footer>
+
+    <!-- jQuery and Bootstrap -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- lesflet -->
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+        crossorigin=""></script>
+    <!-- hight chart -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- datatables -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
