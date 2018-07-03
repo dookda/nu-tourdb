@@ -111,6 +111,21 @@ p.lead {
 #legend {
     width: 100%;
     height: 600px;
+    /* height:600px; */
+    overflow: auto;
+}
+
+#group {
+    width: 100%;
+    height: 600px;
+    /* padding: 0 10%; */
+    display: inline-block;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    padding-top: 10px;
+    padding-right: 10%;
+    padding-bottom: 10px;
+    padding-left: 10%;
 }
 
 #tab {
@@ -141,6 +156,35 @@ p.lead {
     font-size: 14px;
     color: #292929 !important;
     text-align: left;
+}
+
+.flower {
+    background: rgb(241, 240, 240);
+    margin: 0 0 1px;
+    padding: 3% 3%;
+    float: left;
+    width: 100%;
+}
+
+.flower:hover {
+    background: #ffb8f6;
+    margin: 0 0 1px;
+    padding: 3% 3%;
+    float: left;
+    width: 100%;
+    cursor: pointer;
+}
+
+.card-deck .card {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-right: 5px !important;
+    margin-bottom: 0;
+    margin-left: 5px !important;
 }
 
 td.goto-map::before {

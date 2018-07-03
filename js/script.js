@@ -250,11 +250,9 @@ $(function () {
     var D = 'http://www.cgi.uru.ac.th/marker/award.png';
 
     $.getJSON(json, (data) => {
-        // console.log(data);
+        console.log(data);
         tour = L.geoJSON(data, {
             pointToLayer: (feature, latlng) => {
-                // console.log(feature.properties.t_type);
-
                 if (feature.properties.t_type == 'A') {
                     var rp = L.icon({
                         iconUrl: A,
