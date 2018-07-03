@@ -442,4 +442,20 @@ $(function () {
         }
 
     }
+
+    // map contect
+    const nu = [16.744567, 100.194991];
+    const mapContact = L.map('mapContact', {
+        center: nu,
+        zoom: 15
+    });
+    const osmContact = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.{ext}', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">CartoDB</a> | Developed by GeoLab',
+        subdomains: 'abcd',
+        minZoom: 0,
+        maxZoom: 20,
+        ext: 'png'
+    });
+    osmContact.addTo(mapContact);
+    L.marker(nu).addTo(mapContact);
 }); /* End Fn */
