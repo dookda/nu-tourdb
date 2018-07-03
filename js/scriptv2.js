@@ -171,10 +171,7 @@ $(function () {
 
 
 
-    var urlGeoserver = "http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326&outputFormat=application%2Fjson";
-    const json = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326&outputFormat=application%2Fjson';
-    // const url = "http://map.nu.ac.th/service/tour_data.php";
-
+    var urlGeoserver = "http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326_desc&outputFormat=application%2Fjson";
 
     var tour;
     var marker;
@@ -210,8 +207,26 @@ $(function () {
         }
     }
 
-    var cql;
 
+
+    function star(s) {
+        var star = '';
+        for (var i = 0; i < s; i++) {
+            star += '<i id="star" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>';
+        }
+
+        return star;
+    }
+    // for (var i = item.properties.t_potent; i >= 1; i++) {
+    //     star.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+    // }
+
+    // for (i = 0; i < item.properties.t_potent; i++) {
+    //     star.push('<i id="star" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>');
+    // }
+
+    var cql;
     var tmp = [];
     $("input[name='fl-colour']").change(function () {
         var checked = $(this).val();
@@ -228,7 +243,7 @@ $(function () {
             })
         }
         callData();
-        console.log()
+        // console.log()
     });
 
     function loadItem(data) {
@@ -243,12 +258,6 @@ $(function () {
             var t_la = null;
             var t_re = null;
             var t_etc = null;
-
-            var t_prov = null;
-            var st = null;
-            var pl = null;
-            var ud = null;
-            var pb = null;
 
             if (item.properties.t_ac == 1) {
                 t_ac = 't_ac';
@@ -272,20 +281,6 @@ $(function () {
                 t_etc = 't_etc';
             }
 
-            // if (item.properties.provcode == 63) {
-            //     t_prov = 'ตาก';
-            // } else if (item.properties.provcode == 64) {
-            //     t_prov = 'สุโขทัย';
-            // } else if (item.properties.provcode == 65) {
-            //     t_prov = 'พิษณุโลก';
-            // } else if (item.properties.provcode == 53) {
-            //     t_prov = 'อุตรดิตถ์';
-            // } else if (item.properties.provcode == 67) {
-            //     t_prov = 'เพชรบูรณ์';
-            // }
-
-
-            // console.log(i)
             $(".flowers").append('<div class="flower" data-value="' +
                 item.properties.lat +
                 ',' +
@@ -308,22 +303,10 @@ $(function () {
                 t_re +
                 ' ' +
                 t_etc +
-                '">' +
+                '"><span id="kanit13-light">' +
                 item.properties.t_name +
-                '</div>');
+                '</span><br/>ระดับศักยภาพ:' + star(item.properties.t_potent) + '</div>');
         })
-
-        var star = [];
-        // for (var i = item.properties.t_potent; i >= 1; i++) {
-        //     star.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-
-        // }
-
-        // for (i = 0; i < item.properties.t_potent; i++) {
-        //     star.push('<i id="star" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>');
-        // }
-
-
 
         var $filterCheckboxes = $('input[type="checkbox"]');
         $filterCheckboxes.on('change', function () {
@@ -449,11 +432,11 @@ $(function () {
 
         if (cql == null) {
             console.log(cql)
-            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326&CQL_FILTER=BBOX(geom,' +
+            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326_desc&CQL_FILTER=BBOX(geom,' +
                 sw.lng + ',' + sw.lat + ',' + ne.lng + ',' + ne.lat + ')&outputFormat=application%2Fjson';
             refreshData(urlGeoserver)
         } else {
-            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326&CQL_FILTER=BBOX(geom,' +
+            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326_desc&CQL_FILTER=BBOX(geom,' +
                 sw.lng + ',' + sw.lat + ',' + ne.lng + ',' + ne.lat + ')' + cql + '&outputFormat=application%2Fjson';
             refreshData(urlGeoserver)
         }

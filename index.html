@@ -1,13 +1,5 @@
 <!doctype html>
 <html lang="en">
-<!--
-
-Page    : index / MobApp
-Version : 1.0
-Author  : Colorlib
-URI     : https://colorlib.com
-
- -->
 
 <head>
     <title>ฐานข้อมูลทรัพยากรการท่องเที่ยวเชิงสุขภาพ</title>
@@ -65,16 +57,16 @@ URI     : https://colorlib.com
                         <div class="collapse navbar-collapse" id="navbar">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#home">ค้นหา
+                                    <a class="nav-link active" href="#features">ฐานข้อมูล
                                         <span class="sr-only">(current)</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#research">เกี่ยวกับงานวิจัย</a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link" href="#features">ฐานข้อมูล</a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="#me">นักวิจัย</a>
                                 </li>
@@ -88,29 +80,154 @@ URI     : https://colorlib.com
 
 
     <header class="bg-gradient" id="home">
+        <h1>ฐานข้อมูลทรัพยากรการท่องเที่ยวเชิงสุขภาพ</h1>
         <div class="container mt-5">
-            <h1>ฐานข้อมูลทรัพยากรการท่องเที่ยวเชิงสุขภาพ</h1>
-            <p id="tagline">ค้นหาข้อมูลทรัพยากรการท่องเที่ยว 5 จังหวัดภาคเหนือตอนล่าง
+
+            <!-- <p id="tagline">ค้นหาข้อมูลทรัพยากรการท่องเที่ยว 5 จังหวัดภาคเหนือตอนล่าง
                 <br/>(ตาก สุโขทัย พิษณุโลก อุตรดิตถ์ และเพชรบูรณ์) </p>
             <p></p>
             <div class="row justify-content-md-center">
                 <div class="col-6 col-lg-6">
-                    <!-- <input id="firstSearch_box" type="text" class="form-control input-lg" placeholder="ค้นหาข้อมูลทรัพยากรการท่องเที่ยว"> -->
+                    <input id="firstSearch_box" type="text" class="form-control input-lg" placeholder="ค้นหาข้อมูลทรัพยากรการท่องเที่ยว">
                 </div>
             </div>
-
-            <p></p>
-
+            <p></p> -->
         </div>
-
-        <div class="img-holder mt-3">
-            <!-- <img src="images/DSC_0445.jpg" alt="phone" class="img-fluid"> -->
-        </div>
+        <!-- <div class="img-holder mt-3">
+            <img src="images/DSC_0445.jpg" alt="phone" class="img-fluid">
+        </div> -->
     </header>
+
+    <div class="section" id="features">
+        <div class="container">
+            <!-- <h4>สืบค้นฐานข้อมูลทรัพยากรการท่องเที่ยว
+                <span class="text-primary">เชิงสุขภาพ</span>
+            </h4> -->
+            <div class="row">
+                <div class="col-12 col-lg-3">
+                    <div class="card-deck">
+                        <div class="card pricing popular">
+                            <div id="group">
+                                <form>
+                                    <h4>เลือก
+                                        <span class="text-primary">เกณฑ์สนใจ</span>
+                                    </h4>
+                                    <label style="font-size:12px;">
+                                        <input type="checkbox" name="fl-colour" value="t_ac" />
+                                        <span id="kanit13">การเข้าถึง</span>
+                                    </label>
+                                    <br/>
+                                    <label style="font-size:12px;">
+                                        <input type="checkbox" name="fl-colour" value="t_in" />
+                                        <span id="kanit13">ความน่าสนใจ</span>
+                                    </label>
+                                    <br/>
+                                    <label style="font-size:12px;">
+                                        <input type="checkbox" name="fl-colour" value="t_cc" />
+                                        <span id="kanit13">ความสามารถในการรองรับ</span>
+                                    </label>
+                                    <br/>
+                                    <label style="font-size:12px;">
+                                        <input type="checkbox" name="fl-colour" value="t_sq" />
+                                        <span id="kanit13">ศักยภาพ</span>
+                                    </label>
+                                    <br/>
+                                    <label style="font-size:12px;">
+                                        <input type="checkbox" name="fl-colour" value="t_la" />
+                                        <span id="kanit13">คุณภาพบริการ</span>
+                                    </label>
+                                    <br/>
+                                    <label style="font-size:12px;">
+                                        <input type="checkbox" name="fl-colour" value="t_re" />
+                                        <span id="kanit13">( re )</span>
+                                    </label>
+                                    <br/>
+                                    <label style="font-size:12px;">
+                                        <input type="checkbox" name="fl-colour" value="t_etc" />
+                                        <span id="kanit13">อื่นๆ</span>
+                                    </label>
+                                    <p></p>
+                                </form>
+
+                                <div id="legend">
+                                    <h4>คำอธิบาย
+                                        <span class="text-primary">สัญลักษณ์</span>
+                                    </h4>
+                                    <div class="grid-container">
+                                        <div>
+                                            <img src='http://www.map.nu.ac.th/marker/marker2/aed-2.png'>
+                                        </div>
+                                        <div>
+                                            <span id="kanit13">ทรัพยากรการท่องเที่ยวเชิงการแพทย์</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid-container">
+                                        <div>
+                                            <img src='http://www.map.nu.ac.th/marker/flowers_1.png'>
+                                        </div>
+                                        <div>
+                                            <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพทางธรรมชาติ</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid-container">
+                                        <div>
+                                            <img src='http://www.map.nu.ac.th/marker/villa.png'>
+                                        </div>
+                                        <div>
+                                            <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพสมัยใหม่ที่มนุษย์สร้างขึ้น ประเภทสถานที่หรือธุรกิจ</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid-container">
+                                        <div>
+                                            <img src='http://www.map.nu.ac.th/marker/festival.png'>
+                                        </div>
+                                        <div>
+                                            <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพสมัยใหม่ที่มนุษย์สร้างขึ้น ประเภทกิจกรรม</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid-container">
+                                        <div>
+                                            <img src='http://www.map.nu.ac.th/marker/bouddha.png'>
+                                        </div>
+                                        <div>
+                                            <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพทางวัฒนธรรมและภูมิปัญญา</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-3">
+                    <div class="card-deck">
+                        <div class="card pricing popular">
+                            <div id="legend">
+                                <div id="flowers" class="flowers">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card-deck">
+                        <div class="card pricing popular">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+        </div>
+    </div>
+
 
     <!-- // end .section -->
 
-    <div class="section" id="research">
+    <div class="section light-bg" id="research">
         <div class="container">
             <h4>เกี่ยวกับงานวิจัย</h4>
             <div class="row">
@@ -162,133 +279,6 @@ URI     : https://colorlib.com
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="section light-bg" id="features">
-        <div class="container">
-            <h4>สืบค้นฐานข้อมูลทรัพยากรการท่องเที่ยว
-                <span class="text-primary">เชิงสุขภาพ</span>
-            </h4>
-            <div class="row">
-                <div class="col-12 col-lg-3">
-                    <div class="card-deck">
-                        <div class="card pricing popular">
-                            <div id="group">
-                                <form>
-                                    <label style="font-size:12px;">
-                                        ศักยภาพ
-                                    </label>
-                                    <br/>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="t_ac" /> การเข้าถึง
-                                    </label>
-                                    <br/>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="t_in" /> ความน่าสนใจ
-                                    </label>
-                                    <br/>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="t_cc" /> ความสามารถในการรองรับ
-                                    </label>
-                                    <br/>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="t_sq" /> ศักยภาพ
-                                    </label>
-                                    <br/>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="t_la" /> คุณภาพบริการ
-                                    </label>
-                                    <br/>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="t_re" /> re</label>
-                                    <br/>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="t_etc" /> อื่นๆ
-                                    </label>
-                                    <p></p>
-
-
-                                    <br/>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-lg-3">
-                    <div class="card-deck">
-                        <div class="card pricing popular">
-                            <div id="legend">
-                                <div id="flowers" class="flowers">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="card-deck">
-                        <div class="card pricing popular">
-                            <div id="map"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="col-12 col-lg-3">
-                    <div class="card-deck">
-                        <div class="card pricing popular">
-                            <div id="legend">
-                                <h4>คำอธิบาย
-                                    <span class="text-primary">สัญลักษณ์</span>
-                                </h4>
-                                <div class="grid-container">
-                                    <div>
-                                        <img src='http://www.map.nu.ac.th/marker/marker2/aed-2.png'>
-                                    </div>
-                                    <div>
-                                        <span id="kanit13">ทรัพยากรการท่องเที่ยวเชิงการแพทย์ (A)</span>
-                                    </div>
-                                </div>
-
-                                <div class="grid-container">
-                                    <div>
-                                        <img src='http://www.map.nu.ac.th/marker/flowers_1.png'>
-                                    </div>
-                                    <div>
-                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพทางธรรมชาติ (B1)</span>
-                                    </div>
-                                </div>
-
-                                <div class="grid-container">
-                                    <div>
-                                        <img src='http://www.map.nu.ac.th/marker/villa.png'>
-                                    </div>
-                                    <div>
-                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพสมัยใหม่ที่มนุษย์สร้างขึ้น ประเภทสถานที่หรือธุรกิจ (B2-1)</span>
-                                    </div>
-                                </div>
-
-                                <div class="grid-container">
-                                    <div>
-                                        <img src='http://www.map.nu.ac.th/marker/festival.png'>
-                                    </div>
-                                    <div>
-                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพสมัยใหม่ที่มนุษย์สร้างขึ้น ประเภทกิจกรรม (B2-2)</span>
-                                    </div>
-                                </div>
-                                <div class="grid-container">
-                                    <div>
-                                        <img src='http://www.map.nu.ac.th/marker/bouddha.png'>
-                                    </div>
-                                    <div>
-                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพทางวัฒนธรรมและภูมิปัญญา (C)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-            <p></p>
         </div>
     </div>
     <!-- // end .section -->

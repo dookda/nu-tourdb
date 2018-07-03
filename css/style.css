@@ -117,7 +117,7 @@ p.lead {
 
 #group {
     width: 100%;
-    height: 600px;
+    height: 585px;
     /* padding: 0 10%; */
     display: inline-block;
     margin-top: .5rem;
@@ -144,10 +144,19 @@ p.lead {
     color: #605f5f !important;
 }
 
+#kanit13-light {
+    font-family: 'Kanit', sans-serif;
+    font-size: 13px;
+    color: #000000 !important;
+    font-weight: 300;
+    text-align: left;
+}
+
 #kanit13 {
     font-family: 'Kanit', sans-serif;
     font-size: 13px;
     color: #000000 !important;
+    font-weight: 400;
     text-align: left;
 }
 
@@ -198,12 +207,13 @@ td.goto-map::before {
     display: grid;
     grid-template-columns: auto auto;
     padding: 3px;
+    text-align: left;
 }
 
-.grid-container>div {
+/* .grid-container:div {
     text-align: left;
-    padding: 0px 5px;
-}
+    padding: 0px 0px;
+} */
 
 td.details-control::before {
     font-family: "Font Awesome 5 Free";
@@ -376,11 +386,11 @@ header {
 }
 
 .bg-gradient {
-    background-image: url(../images/view.png)
-    /* background-image: -moz-linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%);
+    /* background-image: url(../images/view.png) */
+    background-image: -moz-linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%);
     background-image: -webkit-linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%);
     background-image: -ms-linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%);
-    background-image: linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%); */
+    background-image: linear-gradient( 135deg, rgba(60, 8, 118, 0.8) 0%, rgba(250, 0, 118, 0.8) 100%);
 }
 
 .tagline {
