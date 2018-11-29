@@ -95,8 +95,25 @@ p.lead {
 
 #map {
     width: 100%;
-    height: 600px;
+    height: 580px;
 }
+
+#legend {
+    width: 100%;
+    height: 580px;
+    overflow: auto;
+}
+
+#layer {
+    width: 100%;
+    height: 640px;
+}
+
+.card-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
 
 #fmap {
     width: 100%;
@@ -108,12 +125,6 @@ p.lead {
     height: 400px;
 }
 
-#legend {
-    width: 100%;
-    height: 600px;
-    /* height:600px; */
-    overflow: auto;
-}
 
 #group {
     width: 100%;
@@ -237,6 +248,7 @@ tr.shown td.details-control::before {
 
 .text-primary {
     color: #e38cb7 !important;
+    padding: 0px !important;
 }
 
 .light-font {

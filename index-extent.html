@@ -35,6 +35,7 @@
     <!-- Main css -->
     <link href="css/style.css" rel="stylesheet">
 
+
 </head>
 
 <body data-spy="scroll" data-target="#navbar" data-offset="30">
@@ -81,7 +82,20 @@
     <header class="bg-gradient" id="home">
         <h1>ฐานข้อมูลทรัพยากรการท่องเที่ยวเชิงสุขภาพ</h1>
         <div class="container mt-5">
+
+            <!-- <p id="tagline">ค้นหาข้อมูลทรัพยากรการท่องเที่ยว 5 จังหวัดภาคเหนือตอนล่าง
+                <br/>(ตาก สุโขทัย พิษณุโลก อุตรดิตถ์ และเพชรบูรณ์) </p>
+            <p></p>
+            <div class="row justify-content-md-center">
+                <div class="col-6 col-lg-6">
+                    <input id="firstSearch_box" type="text" class="form-control input-lg" placeholder="ค้นหาข้อมูลทรัพยากรการท่องเที่ยว">
+                </div>
+            </div>
+            <p></p> -->
         </div>
+        <!-- <div class="img-holder mt-3">
+            <img src="images/DSC_0445.jpg" alt="phone" class="img-fluid">
+        </div> -->
     </header>
 
     <div class="section" id="features">
@@ -95,77 +109,47 @@
                         <div class="card pricing popular">
                             <div id="group">
                                 <form>
-                                    <h4>ขอบเขต
-                                        <span class="text-primary">จังหวัด</span>
+                                    <h4>เลือก
+                                        <span class="text-primary">เกณฑ์ที่สนใจ</span>
                                     </h4>
                                     <label style="font-size:12px;">
-                                        <input type="checkbox" name="boundary" value="tk" />
-                                        <span id="kanit13">ตาก</span>
+                                        <input type="checkbox" name="fl-colour" value="t_ac" />
+                                        <span id="kanit13">การเข้าถึง</span>
                                     </label>
                                     <br/>
                                     <label style="font-size:12px;">
-                                        <input type="checkbox" name="boundary" value="st" />
-                                        <span id="kanit13">สุโขทัย</span>
+                                        <input type="checkbox" name="fl-colour" value="t_in" />
+                                        <span id="kanit13">ความน่าสนใจ</span>
                                     </label>
                                     <br/>
                                     <label style="font-size:12px;">
-                                        <input type="checkbox" name="boundary" value="pl" />
-                                        <span id="kanit13">พิษณุโลก</span>
+                                        <input type="checkbox" name="fl-colour" value="t_cc" />
+                                        <span id="kanit13">ความสามารถในการรองรับ</span>
                                     </label>
                                     <br/>
                                     <label style="font-size:12px;">
-                                        <input type="checkbox" name="boundary" value="ud" />
-                                        <span id="kanit13">อุตรดิตถ์</span>
+                                        <input type="checkbox" name="fl-colour" value="t_sq" />
+                                        <span id="kanit13">ศักยภาพ</span>
                                     </label>
                                     <br/>
                                     <label style="font-size:12px;">
-                                        <input type="checkbox" name="boundary" value="pb" />
-                                        <span id="kanit13">เพชรบูรณ์</span>
+                                        <input type="checkbox" name="fl-colour" value="t_la" />
+                                        <span id="kanit13">คุณภาพบริการ</span>
                                     </label>
                                     <br/>
-                                    <p></p>
-                                    <h4>ประเภท
-                                        <span class="text-primary">ทรัพยากรการท่องเที่ยว</span>
-                                    </h4>
                                     <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="A" />
-                                        <span id="kanit13">ทรัพยากรการท่องเที่ยวเชิงการแพทย์</span>
-                                        <div>
-                                            <img src='http://www.map.nu.ac.th/marker/marker2/aed-2.png' height='20'>
-                                        </div>
+                                        <input type="checkbox" name="fl-colour" value="t_re" />
+                                        <span id="kanit13">( re )</span>
                                     </label>
+                                    <br/>
                                     <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="B1" />
-                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพทางธรรมชาติ</span>
-                                        <div>
-                                            <img src='http://www.map.nu.ac.th/marker/flowers_1.png' height='20'>
-                                        </div>
-                                    </label>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="B2.1" />
-                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพสมัยใหม่ที่มนุษย์สร้างขึ้น ประเภทสถานที่หรือธุรกิจ</span>
-                                        <div>
-                                            <img src='http://www.map.nu.ac.th/marker/villa.png' height='20'>
-                                        </div>
-                                    </label>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="B2.2" />
-                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพสมัยใหม่ที่มนุษย์สร้างขึ้น ประเภทกิจกรรม</span>
-                                        <div>
-                                            <img src='http://www.map.nu.ac.th/marker/festival.png' height='20'>
-                                        </div>
-                                    </label>
-                                    <label style="font-size:12px;">
-                                        <input type="checkbox" name="fl-colour" value="C" />
-                                        <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพทางวัฒนธรรมและภูมิปัญญา</span>
-                                        <div>
-                                            <img src='http://www.map.nu.ac.th/marker/bouddha.png' height='20'>
-                                        </div>
+                                        <input type="checkbox" name="fl-colour" value="t_etc" />
+                                        <span id="kanit13">อื่นๆ</span>
                                     </label>
                                     <p></p>
                                 </form>
 
-                                <!-- <div id="legend">
+                                <div id="legend">
                                     <h4>คำอธิบาย
                                         <span class="text-primary">สัญลักษณ์</span>
                                     </h4>
@@ -212,7 +196,7 @@
                                             <span id="kanit13">ทรัพยากรส่งเสริมสุขภาพทางวัฒนธรรมและภูมิปัญญา</span>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -363,7 +347,7 @@
     <!-- datatables -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <!-- Custom JS -->
-    <script src="js/script-province.js"></script>
+    <script src="js/scriptv2.js"></script>
 
 </body>
 

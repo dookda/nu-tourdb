@@ -147,6 +147,21 @@ $(function () {
         zIndex: 3
     });
 
+    const heatmap = L.tileLayer.wms('http://cgi.uru.ac.th/geoserver/upn/wms?', {
+        layers: 'upn:_tour_heat',
+        format: 'image/png',
+        transparent: true,
+        zIndex: 3,
+        tiled: false
+    });
+
+    // const heatmap = L.esri.Heat.featureLayer({
+    //     url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/ArcGIS/rest/services/Graffiti_Reports/FeatureServer/0',
+    //     radius: 12
+    // });
+
+    // heatmap.addTo(map);
+
     var baseMaps = {
         "แผนที่ถนน OSM": osm,
         'แผนที่ถนน': grod,
@@ -158,6 +173,7 @@ $(function () {
         'ขอบเขตจังหวัด': pro.addTo(map),
         'ขอบเขตอำเภอ': amp.addTo(map),
         'ขอบเขตตำบล': tam.addTo(map),
+        'heatmap': heatmap.addTo(map)
     };
 
     // var tour = new L.GeoJSON.AJAX("json", { onEachFeature: popUp });
@@ -207,41 +223,92 @@ $(function () {
         }
     }
 
+    function typeCQL(i, itms) {
+        var a = ''
+        if (i > 0) {
+            a = ' or '
+        }
+
+        if (itms == 'A') {
+            return a + "t_type='A'";
+        } else if (itms == 'B') {
+            return a + "t_type='B'";
+        } else if (itms == 'B1') {
+            return a + "t_type='B1'";
+        } else if (itms == 'B2.1') {
+            return a + "t_type='B2.1'";
+        } else if (itms == 'B2.2') {
+            return a + "t_type='B2.2'";
+        } else if (itms == 'C') {
+            return a + "t_type='C'";
+        }
+    }
+
+    function placeCQL(i, itms) {
+        var a = ''
+        if (i > 0) {
+            a = ' or '
+        }
+
+        if (itms == 'tk') {
+            return a + "t_id='tk'";
+        } else if (itms == 'st') {
+            return a + "t_id='st'";
+        } else if (itms == 'pl') {
+            return a + "t_id='pl'";
+        } else if (itms == 'ud') {
+            return a + "t_id='ud'";
+        } else if (itms == 'pb') {
+            return a + "t_id='pb'";
+        }
+    }
+
     function star(s) {
         var star = '';
         for (var i = 0; i < s; i++) {
             star += '<i id="star" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>';
         }
-
         return star;
     }
-    // for (var i = item.properties.t_potent; i >= 1; i++) {
-    //     star.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
 
-    // }
-
-    // for (i = 0; i < item.properties.t_potent; i++) {
-    //     star.push('<i id="star" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>');
-    // }
-
-    var cql;
-    var tmp = [];
-    $("input[name='fl-colour']").change(function () {
+    var b_cql;
+    var b_tmp = [];
+    $("input[name='boundary']").change(function () {
         var checked = $(this).val();
-        cql = '';
+        b_cql = '';
         if ($(this).is(':checked')) {
-            tmp.push(checked);
-            $.each(tmp, (i, itms) => {
-                cql += assignVal(itms)
+            b_tmp.push(checked);
+            $.each(b_tmp, (i, itms) => {
+                b_cql += placeCQL(i, itms)
             })
         } else {
-            tmp.splice($.inArray(checked, tmp), 1);
-            $.each(tmp, (i, itms) => {
-                cql += assignVal(itms)
+            b_tmp.splice($.inArray(checked, b_tmp), 1);
+            $.each(b_tmp, (i, itms) => {
+                b_cql += placeCQL(i, itms)
             })
         }
-        callData();
-        // console.log()
+        getJSON();
+        // console.log(b_cql)
+    });
+
+    var t_cql;
+    var t_tmp = [];
+    $("input[name='fl-colour']").change(function () {
+        var checked = $(this).val();
+        t_cql = '';
+        if ($(this).is(':checked')) {
+            t_tmp.push(checked);
+            $.each(t_tmp, (i, itms) => {
+                t_cql += typeCQL(i, itms)
+            })
+        } else {
+            t_tmp.splice($.inArray(checked, t_tmp), 1);
+            $.each(t_tmp, (i, itms) => {
+                t_cql += typeCQL(i, itms)
+            })
+        }
+        getJSON();
+        // console.log(t_cql)
     });
 
     function loadItem(data) {
@@ -413,32 +480,69 @@ $(function () {
             onEachFeature: onEachFeature
         });
         overlayMaps['แหล่งท่องเที่ยวเชิงสุขภาพ'] = tour.addTo(map);
-        // L.control.layers(baseMaps, overlayMaps).addTo(map);
+        // L.control.layers(baseMaps, overlayMaps).addTo(map);    
+
     }
 
     // map contect   
     map.on('moveend', () => {
-        callData();
+        // callData();
     });
 
+    //select heatmap
+    var cbox = $('#isHeatmap');
+    var bound = $('#boundary');
+
+    $('input').on('click', () => {
+        if (cbox.is(':checked')) {
+            console.log('check');
+
+        } else if (bound.is(':checked')) {
+            console.log('check bound');
+        }
+    })
+
+    function getJSON() {
+        if (b_cql && t_cql) {
+            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326' +
+                '&CQL_FILTER=' + '(' + b_cql + ') and (' + t_cql + ')' +
+                '&outputFormat=application%2Fjson';
+            refreshData(urlGeoserver)
+            // console.log(urlGeoserver)
+        } else if (b_cql) {
+            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326' +
+                '&CQL_FILTER=' + b_cql +
+                '&outputFormat=application%2Fjson';
+            refreshData(urlGeoserver)
+            // console.log(urlGeoserver)
+        } else if (t_cql) {
+            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326' +
+                '&CQL_FILTER=' + t_cql +
+                '&outputFormat=application%2Fjson';
+            refreshData(urlGeoserver)
+            // console.log(urlGeoserver)
+        } else {
+            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326&outputFormat=application%2Fjson';
+            refreshData(urlGeoserver)
+            // console.log(urlGeoserver)
+        }
+    }
 
     function callData() {
-
         var bbox = map.getBounds();
         var sw = bbox._southWest;
         var ne = bbox._northEast;
 
-        if (cql == null) {
-            console.log(cql)
+        if (t_cql == null) {
+            // console.log(t_cql)
             urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326_desc&CQL_FILTER=BBOX(geom,' +
                 sw.lng + ',' + sw.lat + ',' + ne.lng + ',' + ne.lat + ')&outputFormat=application%2Fjson';
             refreshData(urlGeoserver)
         } else {
             urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326_desc&CQL_FILTER=BBOX(geom,' +
-                sw.lng + ',' + sw.lat + ',' + ne.lng + ',' + ne.lat + ')' + cql + '&outputFormat=application%2Fjson';
+                sw.lng + ',' + sw.lat + ',' + ne.lng + ',' + ne.lat + ')' + t_cql + '&outputFormat=application%2Fjson';
             refreshData(urlGeoserver)
         }
-
     }
 
     // map contect
