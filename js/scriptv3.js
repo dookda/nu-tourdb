@@ -155,6 +155,10 @@ $(function () {
         subdomains: 'abcd',
         maxZoom: 19
     });
+    var Esri_WorldStreetMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.png', {
+        maxZoom: 19,
+        attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+    });
     //overlay layers
     var pro = L.tileLayer.wms(mapnuUrl, {
         layers: 'hgis:dpc9_province_4326',
