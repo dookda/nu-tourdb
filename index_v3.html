@@ -99,20 +99,18 @@
                                 <h5>เลือก<span class="text-primary">ทรัพยากรการท่องเที่ยวเชิงสุขภาพ</span>
                                 </h5>
                                 <hr>
-                                <img src='http://www.map.nu.ac.th/marker/health-education-2e8003/hospital-building.png'
-                                    height='40'>
-                                <div class="pretty p-icon p-round p-pulse">
-                                    <input type="checkbox" name="tour-type" value="A" />
-                                    <div class="state p-success">
-                                        <i class="icon mdi mdi-check"></i>
-                                        <label><span id="kanit13">การแพทย์</span></label>
-                                    </div>
-                                </div>
-                                <br />
+
+                                <!-- A = ธรรมชาติ
+                                B = กิจกรรม
+                                C=วัฒนธรรมและภูมิปัญญา
+                                D= สถานบริการเชิงการแพทย์
+                                E= ธุรกิจที่เกี่ยวกับสุขภาพ -->
+
+
 
                                 <img src='http://www.map.nu.ac.th/marker/nature-7bf069/forest2.png' height='40'>
                                 <div class="pretty p-icon p-round p-pulse">
-                                    <input type="checkbox" name="tour-type" value="B1" />
+                                    <input type="checkbox" name="tour-type" value="A" />
                                     <div class="state p-success">
                                         <i class="icon mdi mdi-check"></i>
                                         <label><span id="kanit13">ธรรมชาติ</span></label>
@@ -122,20 +120,10 @@
 
                                 <img src='http://www.map.nu.ac.th/marker/festival.png' height='40'>
                                 <div class="pretty p-icon p-round p-pulse">
-                                    <input type="checkbox" name="tour-type" value="B2.2" />
+                                    <input type="checkbox" name="tour-type" value="B" />
                                     <div class="state p-success">
                                         <i class="icon mdi mdi-check"></i>
                                         <label><span id="kanit13">กิจกรรม</span></label>
-                                    </div>
-                                </div>
-                                <br />
-
-                                <img src='http://www.map.nu.ac.th/marker/villa.png' height='40'>
-                                <div class="pretty p-icon p-round p-pulse">
-                                    <input type="checkbox" name="tour-type" value="B2.1" />
-                                    <div class="state p-success">
-                                        <i class="icon mdi mdi-check"></i>
-                                        <label><span id="kanit13">สถานประกอบการหรือธุรกิจ</span></label>
                                     </div>
                                 </div>
                                 <br />
@@ -150,6 +138,28 @@
                                     </div>
                                 </div>
                                 <br />
+
+                                <img src='http://www.map.nu.ac.th/marker/health-education-2e8003/hospital-building.png'
+                                    height='40'>
+                                <div class="pretty p-icon p-round p-pulse">
+                                    <input type="checkbox" name="tour-type" value="D" />
+                                    <div class="state p-success">
+                                        <i class="icon mdi mdi-check"></i>
+                                        <label><span id="kanit13">สถานบริการเชิงการแพทย์</span></label>
+                                    </div>
+                                </div>
+                                <br />
+
+                                <img src='http://www.map.nu.ac.th/marker/villa.png' height='40'>
+                                <div class="pretty p-icon p-round p-pulse">
+                                    <input type="checkbox" name="tour-type" value="E" />
+                                    <div class="state p-success">
+                                        <i class="icon mdi mdi-check"></i>
+                                        <label><span id="kanit13">ธุรกิจที่เกี่ยวกับสุขภาพ</span></label>
+                                    </div>
+                                </div>
+                                <br />
+
 
                                 <hr>
                                 <h4><span class="text-primary">จำนวนแหล่งท่องเที่ยว</span></h4>
@@ -169,14 +179,14 @@
                         <div class="card pricing popular">
                             <div class="row">
                                 <div class="card-padding">
-                                    <h5>เรียง<span class="text-primary">ลำดับ</span>
+                                    <h5>เลือก<span class="text-primary">ข้อมูล</span>
                                     </h5>
 
                                     <div class="pretty p-icon p-round">
-                                        <input type="radio" name="tour-sort" value="p" />
+                                        <input type="radio" name="tour-sort" value="p" checked />
                                         <div class="state p-info">
                                             <i class="icon mdi mdi-check"></i>
-                                            <label><span id="kanit13">ระดับศักยภาพ</span></label>
+                                            <label><span id="kanit13">จากการเก็บมูล</span></label>
                                         </div>
                                     </div>
 
@@ -184,7 +194,7 @@
                                         <input type="radio" name="tour-sort" value="n" />
                                         <div class="state p-info">
                                             <i class="icon mdi mdi-check"></i>
-                                            <label><span id="kanit13">ชื่อสถานที่</span></label>
+                                            <label><span id="kanit13">ข้อมูลทุติยภูมิ</span></label>
                                         </div>
                                     </div>
                                     <p></p>
@@ -313,10 +323,6 @@
                 <div class="col-md-4">
                     <div class="container text-center">
                         <img src="images/studyarea.png" alt="client logos" class="img-fluid">
-                        <!-- <img src="images/Seal_st.png" alt="client logos" class="img-fluid">
-                        <img src="images/Seal_pl.png" alt="client logos" class="img-fluid">
-                        <img src="images/Seal_ud.png" alt="client logos" class="img-fluid">
-                        <img src="images/Seal_pb.png" alt="client logos" class="img-fluid"> -->
                     </div>
                 </div>
             </div>

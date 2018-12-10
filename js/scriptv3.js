@@ -155,10 +155,6 @@ $(function () {
         subdomains: 'abcd',
         maxZoom: 19
     });
-    var Esri_WorldStreetMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.png', {
-        maxZoom: 19,
-        attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-    });
     //overlay layers
     var pro = L.tileLayer.wms(mapnuUrl, {
         layers: 'hgis:dpc9_province_4326',
@@ -210,6 +206,7 @@ $(function () {
     var b_tmp = [];
     var t_cql;
     var t_tmp = [];
+    var s_cql = 't_potent > 0';
     var urlGeoserver;
     var l_cql;
     var box_cql;
@@ -230,6 +227,7 @@ $(function () {
                 b_cql += placeCQL(i, itms);
                 l_cql += lyrCQL(i, itms);
                 box_cql += boxCQL(i, itms);
+                // console.log(box_cql)
             })
         } else {
             b_tmp.splice($.inArray(checked, b_tmp), 1);
@@ -260,6 +258,22 @@ $(function () {
         getJSON();
     });
 
+
+    $("input[name='tour-sort']").change(async function () {
+        var radio = $(this).val();
+        console.log(radio);
+        if (radio === 'p') {
+            s_cql = 't_potent > 0';
+            console.log('p')
+            await getJSON();
+        } else {
+            s_cql = 't_potent == 0';
+            console.log('n')
+            await getJSON();
+        }
+
+    });
+
     markers.on('click', function (e) {
         L.popup({
                 maxWidth: 200,
@@ -278,14 +292,12 @@ $(function () {
             return a + "t_type='A'";
         } else if (itms == 'B') {
             return a + "t_type='B'";
-        } else if (itms == 'B1') {
-            return a + "t_type='B1'";
-        } else if (itms == 'B2.1') {
-            return a + "t_type='B2.1'";
-        } else if (itms == 'B2.2') {
-            return a + "t_type='B2.2'";
         } else if (itms == 'C') {
             return a + "t_type='C'";
+        } else if (itms == 'D') {
+            return a + "t_type='D'";
+        } else if (itms == 'E') {
+            return a + "t_type='E'";
         }
     }
 
@@ -337,15 +349,16 @@ $(function () {
         }
     }
 
-    function zoomMap() {
+    async function zoomMap() {
         map.eachLayer(function (lyr) {
             if (lyr.options.layers == 'hgis:dpc9_province_4326') {
                 map.removeLayer(lyr);
             }
-        })
+        });
 
+        var cql;
         if (l_cql) {
-            console.log(l_cql);
+            cql = 'where ' + box_cql;
             pro = L.tileLayer.wms(mapnuUrl, {
                 layers: 'hgis:dpc9_province_4326',
                 format: 'image/png',
@@ -355,7 +368,7 @@ $(function () {
                 CQL_FILTER: l_cql,
             }).addTo(map);
         } else {
-            console.log(l_cql);
+            cql = "where pro_code='63' OR pro_code='65' OR pro_code='53' OR pro_code='64' OR pro_code='67'";
             pro = L.tileLayer.wms(mapnuUrl, {
                 layers: 'hgis:dpc9_province_4326',
                 format: 'image/png',
@@ -365,10 +378,9 @@ $(function () {
             }).addTo(map);
         }
 
-        var cql = 'where ' + box_cql;
+        // console.log(cql)
         var bboxurl = "http://cgi.uru.ac.th:3000/api/getProbbox";
-
-        $.ajax({
+        await $.ajax({
             type: 'post',
             data: {
                 cql: cql
@@ -386,21 +398,23 @@ $(function () {
     function getJSON() {
         if (b_cql && t_cql) {
             urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326' +
-                '&CQL_FILTER=' + '(' + b_cql + ') and (' + t_cql + ')' +
+                '&CQL_FILTER=(' + b_cql + ') and (' + t_cql + ') and (' + s_cql + ')' +
                 '&outputFormat=application%2Fjson';
             refreshData(urlGeoserver)
         } else if (b_cql) {
             urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326' +
-                '&CQL_FILTER=' + b_cql +
+                '&CQL_FILTER=(' + b_cql + ') and (' + s_cql + ')' +
                 '&outputFormat=application%2Fjson';
             refreshData(urlGeoserver)
         } else if (t_cql) {
             urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326' +
-                '&CQL_FILTER=' + t_cql +
+                '&CQL_FILTER=(' + t_cql + ') and (' + s_cql + ')' +
                 '&outputFormat=application%2Fjson';
             refreshData(urlGeoserver)
         } else {
-            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326&outputFormat=application%2Fjson';
+            urlGeoserver = 'http://cgi.uru.ac.th/geoserver/upn/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upn:tour_4326' +
+                '&CQL_FILTER=' + s_cql +
+                '&outputFormat=application%2Fjson';
             refreshData(urlGeoserver)
         }
     }
@@ -425,12 +439,12 @@ $(function () {
         });
 
         // marker
-        var A = 'http://www.map.nu.ac.th/marker/health-education-2e8003/hospital-building.png';
-        var B1 = 'http://www.map.nu.ac.th/marker/nature-7bf069/forest2.png';
-        var B21 = 'http://www.map.nu.ac.th/marker/villa.png';
-        var B22 = 'http://www.map.nu.ac.th/marker/festival.png';
+        var A = 'http://www.map.nu.ac.th/marker/nature-7bf069/forest2.png';
+        var B = 'http://www.map.nu.ac.th/marker/festival.png';
         var C = 'http://www.map.nu.ac.th/marker/culture-entertainment-C259B5/museum_crafts.png';
-        var D = 'http://www.cgi.uru.ac.th/marker/award.png';
+        var D = 'http://www.map.nu.ac.th/marker/health-education-2e8003/hospital-building.png';
+        var E = 'http://www.map.nu.ac.th/marker/villa.png';
+        var F = 'http://www.cgi.uru.ac.th/marker/award.png';
 
         let tour = L.geoJSON(data, {
             pointToLayer: (feature, latlng) => {
@@ -441,23 +455,9 @@ $(function () {
                         iconAnchor: [12, 37],
                         popupAnchor: [5, -30]
                     });
-                } else if (feature.properties.t_type == 'B1') {
+                } else if (feature.properties.t_type == 'B') {
                     var rp = L.icon({
-                        iconUrl: B1,
-                        iconSize: [32, 37],
-                        iconAnchor: [12, 37],
-                        popupAnchor: [5, -30]
-                    });
-                } else if (feature.properties.t_type == 'B2.1') {
-                    var rp = L.icon({
-                        iconUrl: B21,
-                        iconSize: [32, 37],
-                        iconAnchor: [12, 37],
-                        popupAnchor: [5, -30]
-                    });
-                } else if (feature.properties.t_type == 'B2.2') {
-                    var rp = L.icon({
-                        iconUrl: B22,
+                        iconUrl: B,
                         iconSize: [32, 37],
                         iconAnchor: [12, 37],
                         popupAnchor: [5, -30]
@@ -469,9 +469,16 @@ $(function () {
                         iconAnchor: [12, 37],
                         popupAnchor: [5, -30]
                     });
-                } else {
+                } else if (feature.properties.t_type == 'D') {
                     var rp = L.icon({
                         iconUrl: D,
+                        iconSize: [32, 37],
+                        iconAnchor: [12, 37],
+                        popupAnchor: [5, -30]
+                    });
+                } else if (feature.properties.t_type == 'E') {
+                    var rp = L.icon({
+                        iconUrl: E,
                         iconSize: [32, 37],
                         iconAnchor: [12, 37],
                         popupAnchor: [5, -30]
@@ -488,7 +495,6 @@ $(function () {
                 markers.options.markName = 'da';
                 markers.addTo(map)
                 return false
-
             },
             // onEachFeature: onEachFeature
         });
@@ -506,15 +512,25 @@ $(function () {
 
     function sortData(data) {
         $.each(data, (i, item) => {
-            $(".flowers").append('<div class="flower" data-value="' +
-                item.properties.lat + ',' +
-                item.properties.lon + ',' +
-                item.properties.t_name + ',' +
-                item.properties.t_identity +
-                '"><span id="kanit13-light">' +
-                item.properties.t_name +
-                '</span><br/>ระดับศักยภาพ:' + star(item.properties.t_potent) + '</div>');
-
+            if (item.properties.t_potent > 0) {
+                $(".flowers").append('<div class="flower" data-value="' +
+                    item.properties.lat + ',' +
+                    item.properties.lon + ',' +
+                    item.properties.t_name + ',' +
+                    item.properties.t_identity +
+                    '"><span id="kanit13-light">' +
+                    item.properties.t_name +
+                    '</span><br/>ระดับศักยภาพ:' + star(item.properties.t_potent) + '</div>');
+            } else {
+                $(".flowers").append('<div class="flower" data-value="' +
+                    item.properties.lat + ',' +
+                    item.properties.lon + ',' +
+                    item.properties.t_name + ',' +
+                    item.properties.t_identity +
+                    '"><span id="kanit13-light">' +
+                    item.properties.t_name +
+                    '</span></div>');
+            }
             $("#count").html(i);
         })
     }
@@ -522,28 +538,32 @@ $(function () {
     function loadItem(obj) {
         $('#flowers').empty();
         var data = obj.features;
-        $("input[name='tour-sort']").change(() => {
-            var radio = $('input:checked').val();
-            if (radio == 'p') {
-                data.sort((a, b) => {
-                    return b.properties.t_potent - a.properties.t_potent
-                });
-                $('#flowers').empty();
-                sortData(data);
-            } else {
-                data.sort((a, b) => {
-                    var nameA = a.properties.t_name.toLowerCase();
-                    var nameB = b.properties.t_name.toLowerCase();
-                    if (nameA < nameB) //sort string ascending
-                        return -1
-                    if (nameA > nameB)
-                        return 1
-                    return 0
-                });
-                $('#flowers').empty();
-                sortData(data);
-            }
-        })
+        // $("input[name='tour-sort']").change(() => {
+        //     var radio = $('input:checked').val();
+        //     if (radio == 'p') {
+        //         data.sort((a, b) => {
+        //             return b.properties.t_potent - a.properties.t_potent
+        //         });
+        //         $('#flowers').empty();
+        //         sortData(data);
+        //     } else {
+        //         data.sort((a, b) => {
+        //             var nameA = a.properties.t_name.toLowerCase();
+        //             var nameB = b.properties.t_name.toLowerCase();
+        //             if (nameA < nameB) //sort string ascending
+        //                 return -1
+        //             if (nameA > nameB)
+        //                 return 1
+        //             return 0
+        //         });
+        //         $('#flowers').empty();
+        //         sortData(data);
+        //     }
+        // })
+        data.sort((a, b) => {
+            return b.properties.t_potent - a.properties.t_potent
+        });
+        $('#flowers').empty();
         sortData(data);
 
         $('.flowers').on('click', '.flower', function () {
@@ -572,13 +592,10 @@ $(function () {
         printer.printMap('CurrentSize', 'MyManualPrint')
     }
 
-
-    // $(function () {
+    // print
     $('#btn').click(function () {
         manualPrint();
     });
-    // });
-
 
     // map contect
     const nu = [16.744567, 100.194991];
