@@ -264,11 +264,11 @@ $(function () {
         console.log(radio);
         if (radio === 'p') {
             s_cql = 't_potent > 0';
-            console.log('p')
+            // console.log('p')
             await getJSON();
         } else {
             s_cql = 't_potent == 0';
-            console.log('n')
+            // console.log('n')
             await getJSON();
         }
 
